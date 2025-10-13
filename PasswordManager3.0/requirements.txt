@@ -1,0 +1,9 @@
+
+Python 3.11+ 
+PySide6
+cryptography
+argon2-cffi
+cbor2
+pyperclip # Optionnel
+zxcvbn-python
+platformdirs

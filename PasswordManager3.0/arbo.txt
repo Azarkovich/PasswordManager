@@ -1,0 +1,13 @@
+---- ARBORESCENCE ----
+PassMan/
+  core/
+    crypto.py        # Argon2id, AES-GCM/ChaCha20-Poly1305
+    vault.py         # ouvrir/fermer, add/remove, save/load (CBOR binaire)
+    models.py        # Entry(...), schemas
+  services/
+    clipboard.py     # set/clear avec timer
+    strength.py      # zxcvbn wrapper
+  ui/
+    main_window.py   # liste, détails, recherche
+    dialogs.py       # master password, générateur
+  app.py             # bootstrap Qt
