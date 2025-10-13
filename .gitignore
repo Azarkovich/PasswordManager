@@ -1,0 +1,22 @@
+#Python
+__pycache__/
+*.pyc
+*.venv/
+
+# Builds
+build/
+dist/
+*.spec
+
+# Coffres et données
+*.vault
+*.cbor.vault
+*.kdbx
+*.sqlite
+*.sqlite
+*.db
+*.csv
+*.env
+data.txt
+secrets*.txt
+passwords*.txt
