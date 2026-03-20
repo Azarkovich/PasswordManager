@@ -6,7 +6,7 @@ from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 from argon2.low_level import Type, hash_secret_raw
 import os
 
-# Paramètres par défaut (on ajustera plus tard si besoin)
+# Paramètres par défaut
 ARGON2_MEMORY_KIB = 128 * 1024   # 128 MiB (mémoire-dur)
 ARGON2_TIME_COST  = 2
 ARGON2_PARALLELISM = 1

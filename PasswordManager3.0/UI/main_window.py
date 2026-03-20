@@ -53,11 +53,11 @@ class MainWindow(QMainWindow):
 
 
         self.setCentralWidget(central)
-        self.AUTOLOCK_MINUTES = 5  # tu peux changer
+        self.AUTOLOCK_MINUTES = 5 
         self.idle_timer = QTimer(self)
         self.idle_timer.setInterval(self.AUTOLOCK_MINUTES * 60 * 1000)
         self.idle_timer.timeout.connect(self.lock_vault)
-        self.installEventFilter(self)  # capter l'activité utilisateur
+        self.installEventFilter(self) 
         self._arm_idle_timer()
 
 
@@ -87,7 +87,8 @@ class MainWindow(QMainWindow):
         self.act_del.setShortcut("Del")
         self.act_copy.setShortcut("Ctrl+C")
         self.act_lock.setShortcut("Ctrl+L")
-        # recherche si tu as self.search :
+        
+        
         self.search.setClearButtonEnabled(True)
         self.search.setPlaceholderText("Rechercher (Ctrl+F)…")
         find_action = QAction(self)

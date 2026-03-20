@@ -8,7 +8,7 @@ import secrets, string
 
 from services.strength import strength, score_to_label
 
-# petite liste interne pour passphrases (tu pourras la remplacer par une wordlist)
+# petite liste interne pour passphrases
 DEFAULT_WORDS = [
     "lune","pierre","tigre","mer","forêt","orange","neon","pixel","delta","vortex",
     "brise","astro","kilo","sigma","quartz","cobra","opera","ninja","python","foudre"
