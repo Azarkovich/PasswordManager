@@ -1,6 +1,5 @@
 # app.py 
 
-"MDP maître: TonMotdePasseSuperSecretIci"
 
 from PySide6.QtWidgets import QApplication
 from UI.main_window import MainWindow

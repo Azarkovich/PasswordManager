@@ -1,9 +1,13 @@
-
-Python 3.11+ 
-PySide6
-cryptography
-argon2-cffi
-cbor2
-pyperclip # Optionnel
-zxcvbn-python
-platformdirs
+argon2-cffi==25.1.0
+argon2-cffi-bindings==25.1.0
+cbor2==5.8.0
+cffi==2.0.0
+cryptography==46.0.5
+platformdirs==4.9.4
+pycparser==3.0
+pyperclip==1.11.0
+PySide6==6.10.2
+PySide6_Addons==6.10.2
+PySide6_Essentials==6.10.2
+shiboken6==6.10.2
+zxcvbn-python==4.4.24
