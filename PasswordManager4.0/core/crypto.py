@@ -37,6 +37,7 @@ def derive_key(password: str, salt: bytes)-> bytes:
         secret          = password.encode('utf-8'),
         salt            = salt,
         time_cost       = ARGON2_TIME_COST,
+        memory_cost     = ARGON2_MEMORY_COST,
         parallelism     = ARGON2_PARALLELISM,
         hash_len        =ARGON2_HASH_LENGTH,
         type            = Type.ID
