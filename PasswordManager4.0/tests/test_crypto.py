@@ -1,4 +1,4 @@
-#test_crypto.py
+#tests/test_crypto.py
 
 """
 Tests unitaires de la couche cryptographique
