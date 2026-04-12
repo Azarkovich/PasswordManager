@@ -1,4 +1,4 @@
-#/corecrypto.py
+#/core/crypto.py
 
 """
 Couche cryptographique du gestionnaire de mots de passe 
