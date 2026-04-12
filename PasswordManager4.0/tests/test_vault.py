@@ -14,13 +14,13 @@ import tempfile
 from core.vault import Vault
 from core.models import Entry
 from cryptography.exceptions import InvalidTag
-
+from storage.file_storage import FileStorage
 
 
 # Test create()
 # Créer un coffre temporaire 
 tmp = tempfile.mktemp(suffix='.vault')
-v = Vault(tmp)
+v = Vault(FileStorage(tmp))
 v.create('MonMotDePasse123!')
 
 assert v.exists(), "Le fichier .vault doit exister sur le disque..."
