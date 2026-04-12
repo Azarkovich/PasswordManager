@@ -5,12 +5,11 @@
 """
 
 # ----- IMPORTS -----
-import os
 import cbor2
 
 from datetime import datetime, timezone
 from core.crypto import (
-    encrypt, decrypt, derive_key, generate_salt, generate_nonce
+    encrypt, decrypt, derive_key, generate_salt
 )
 from core.models import Entry
 
@@ -18,8 +17,8 @@ from core.models import Entry
 class Vault: 
     VERSION = 1 
 
-    def __init__(self, path: str):
-        self.path           = path
+    def __init__(self, storage):
+        self.storage        = storage
         self.salt           = None
         self.key            = None
         self.entries        = []
@@ -27,7 +26,7 @@ class Vault:
 
 
     def exists(self):
-        return os.path.exists(self.path)
+        return self.storage.exists()
     
 
     def create(self, master_password: str):
@@ -43,7 +42,7 @@ class Vault:
 
 
     def _save_file(self):
-        self._require_unlocked
+        self._require_unlocked()
         # Sérialiser les entrées
         plaintext = cbor2.dumps({"entries": [e.to_dict() for e in self.entries]})
 
@@ -55,19 +54,14 @@ class Vault:
             "ciphertext"    : ciphertext
         }
 
-        # Écriture atomique
-        tmp = self.path + ".tmp"
-        with open(tmp, "wb") as f:
-            cbor2.dump(outer, f)
-        os.replace(tmp, self.path)
+        self.storage.save(outer)
 
     
     def unlock(self, master_password):
         if not self.exists():
-            raise FileNotFoundError("Le fichier .tmp n'existe pas...")
+            raise FileNotFoundError("Le coffre n'existe pas. Commencez par le créer")
         
-        with open(self.path, "rb") as f:
-            outer = cbor2.load(f)
+        outer = self.storage.load()
         
         self.salt       = outer["salt"]
         nonce           = outer["nonce"]
@@ -115,20 +109,10 @@ class Vault:
                 e.password      = password
                 e.notes         = notes
                 e.updated_at    = datetime.now(timezone.utc).isoformat()
-            break
+                break
         self._save_file()
 
     def list_entries(self):
         self._require_unlocked()
         return list(self.entries)
-    
-
-
-
-        
-
-
-
-
-    
     
