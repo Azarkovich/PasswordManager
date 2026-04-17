@@ -6,24 +6,34 @@
 """
 
 # ----- IMPORTS ----- 
-import config
+import sys
+
+from PySide6.QtWidgets          import QApplication
 from storage.file_storage       import FileStorage
 from storage.sqlite_storage     import SQLiteStorage
 from core.vault                 import Vault
+from ui.login_window            import LoginWindow
+from config                     import load_config
+
 
 
 if __name__ == "__main__":
+    app = QApplication(sys.argv)
+
     # 1. Charger la config
-    configuration = config.load_config()
+    config = load_config()
 
     # 2. Créer le bon backend
-    if configuration["backend"] == "sqlite":
-        storage = SQLiteStorage(configuration["vault_path"])
+    if config["backend"] == "sqlite":
+        storage = SQLiteStorage(config["vault_path"])
     else:
-        storage = FileStorage(configuration["vault_path"])
+        storage = FileStorage(config["vault_path"])
 
-    # 3. Créer le Vault avec le backend
+    # 3. Créer le vault
     vault = Vault(storage)
 
-    # UI
-    print("Vault prêt. UI à venir")
+    # 4. Lancer le login
+    win = LoginWindow(vault)
+    win.show()
+
+    sys.exit(app.exec())
